@@ -1,0 +1,48 @@
+{% extends "lenses/base.html" %}
+
+{% block title %}{{ globject.gl_name }}{% endblock %}
+
+{% block content %}
+
+<ul>
+<p>
+<h1>{{ globject.gl_name }}</h1>
+{% if globject.gl_image %}
+<img src="{{globject.gl_image.url}}">
+<br>
+<a target="_blank" href = "http://ps1images.stsci.edu/cgi-bin/ps1cutouts?pos={{globject.gl_alpha}} {{globject.gl_delta}}">
+PANSTARRS Image</a>
+{% else %}
+No Image Yet.
+{% endif %}
+</p>
+<p>
+<li><a href = "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?db_key=AST&db_key=PRE&qform=AST&arxiv_sel=astro-ph&arxiv_sel=cond-mat&arxiv_sel=cs&arxiv_sel=gr-qc&arxiv_sel=hep-ex&arxiv_sel=hep-lat&arxiv_sel=hep-ph&arxiv_sel=hep-th&arxiv_sel=math&arxiv_sel=math-ph&arxiv_sel=nlin&arxiv_sel=nucl-ex&arxiv_sel=nucl-th&arxiv_sel=physics&arxiv_sel=quant-ph&arxiv_sel=q-bio&sim_query=YES&ned_query=YES&adsobj_query=YES&aut_logic=OR&obj_logic=AND&author=&object={{globject.gl_name}}&start_mon=&start_year=&end_mon=&end_year=&ttl_logic=OR&title=&txt_logic=OR&text=&nr_to_return=200&start_nr=1&jou_pick=ALL&ref_stems=&data_and=ALL&group_and=ALL&start_entry_day=&start_entry_mon=&start_entry_year=&end_entry_day=&end_entry_mon=&end_entry_year=&min_score=&sort=SCORE&data_type=SHORT&aut_syn=YES&ttl_syn=YES&txt_syn=YES&aut_wt=1.0&obj_wt=1.0&ttl_wt=0.3&txt_wt=3.0&aut_wgt=YES&obj_wgt=YES&ttl_wgt=YES&txt_wgt=YES&ttl_sco=YES&txt_sco=YES&version=1"> The results of query from the ADS Database for {{globject.gl_name}}
+</a></li>
+
+<p>
+alpha (dec) = {{globject.gl_alpha}}, delta (dec) = {{globject.gl_delta}}
+<br>
+RA (h:m:s) = {{globject.gl_ra}}, DEC (d:m:s) = {{globject.gl_dec}} 
+</p>
+<li>Quasar images =  {{globject.c_count }}</li>
+<br>
+<table border="1">
+{% for component in globject.glcomponent_set.all %}
+    <th>
+    <b>{{ component.c_name }}</b>
+    <hr>
+    &Delta; x (sec) = {{ component.c_alpha }}
+    <br>
+    &Delta; y (sec) = {{component.c_delta}}
+    <hr>
+    {% for magnitude in component.magnitude_set.all %}
+    	{{magnitude.m_band}} = {{magnitude.m_value}} &plusmn; {{magnitude.m_value_err}}
+    <br>
+    {% endfor %}
+    </th>
+{% endfor %}
+</table>
+</ul>
+
+{% endblock %}

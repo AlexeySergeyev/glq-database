@@ -1,0 +1,35 @@
+{% extends "lenses/base.html" %}
+{% block title %}GLQD Search Form {% endblock %}
+{% block content %}
+Select filter values
+<hr>
+<form action="/lenses/table/" method="post">
+	<label for "ra"> RA:</label>
+	<br>
+	<input id="ra" type="checkbox" name="ra" value="{{ra}}" >
+	<label for "ra"> from </label>
+	<input id="ra" type="text" name="ra" value="{{ra}}" >
+	<label for "ra"> to </label>
+	<input id="ra" type="text" name="ra" value="{{ra}}" >
+	<br>
+	<label for "dec"> DEC:</label>
+	<br>
+	<input id="dec" type="checkbox" name="dec" value="{{dec}}" >
+	<label for "dec"> from </label>
+	<input id="dec" type="text" name="dec" value="{{dec}}" >
+	<label for "dec"> to </label>
+	<input id="dec" type="text" name="dec" value="{{dec}}" >
+	<br>
+	<label for ""> Magnitude:</label>
+	<br>
+	<input id="bmag" type="checkbox" name="bmag" value="{{bmag}}" >
+	<label for "mag"> from </label>
+	<input id="lmag" type="text" name="lmag" value="{{lmag}}" >
+	<label for "mag"> to </label>
+	<input id="hmag" type="text" name="hmag" value="{{hmag}}" >
+	<br>
+	<br>
+	<input type="submit" value="Send">
+	<input type="submit" value="Clear">
+</form>
+{% endblock %}

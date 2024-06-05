@@ -1,0 +1,71 @@
+{% extends "lenses/base.html" %}
+{% block title %}The Table of GLQ{% endblock %}
+
+{% load static %}
+{% block content %}
+<table border="1">
+<caption>Gravitationally Lensed Quasars Table</caption>
+	<tr>
+        <th>Id</th>
+		<th>GLQ NAME</th>
+        <th>Image</th>
+		<th>RA</th>
+		<th>DEC</th>
+        <th>z<sub>qso</sub></th>
+		<th>N<sub>ima</sub></th>
+        <th>Ang. size <br> (")</th>
+        <th>m<sub>qso</sub> range <br>(m<sub>i</sub>)</th>
+        <th>z<sub>lens</sub></th>
+        <th>m<sub>lens</sub><br>(m<sub>i</sub>)</th>
+{% if latest_gls_list %}
+    <ul>
+    {% for glsobject in latest_gls_list %}
+    	<tr>
+            <th>{{ forloop.counter0|add:latest_gls_list.start_index }}</th>
+    		<th><a href="{% url 'lenses:detail' glsobject.id %}">{{ glsobject.gl_name }} </a></th>
+            <th>
+                {% if glsobject.gl_image %}
+                    <img src={{glsobject.gl_image.url}} width="60" height="60">
+                {% else %}
+                    <img src= "{% static 'lenses/empty60.jpeg' %}"  width="60" height="60">
+                {% endif %}
+            </th>
+            <th>{{glsobject.gl_ra}}</th> 
+        	<th>{{glsobject.gl_dec}}</th>
+            <th>{{glsobject.q_redshift}}</th>
+        	<th>{{glsobject.c_count}}</th>
+            <th>{{glsobject.max_sep}}</th>
+            <th>{{glsobject.max_mag|floatformat:-1}} -
+                {{glsobject.min_mag|floatformat:-1}}</th>
+            <th>{{glsobject.l_redshift}}</th>
+            <th>{{glsobject.gal_mag}}</th>            
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No GLQs are available.</p>
+{% endif %}
+</table>
+
+{% if latest_gls_list.has_other_pages %}
+  <ul class="pagination">
+    {% if latest_gls_list.has_previous %}
+      <a href="?page={{ latest_gls_list.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <span>&laquo;</span>
+    {% endif %}
+    {% for i in latest_gls_list.paginator.page_range %}
+      {% if latest_gls_list.number == i %}
+        <span>{{ i }} <span class="sr-only">(current)</span></span>
+      {% else %}
+        <a href="?page={{ i }}">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if latest_gls_list.has_next %}
+      <a href="?page={{ latest_gls_list.next_page_number }}">&raquo;</a>
+    {% else %}
+      <span>&raquo;</span>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}

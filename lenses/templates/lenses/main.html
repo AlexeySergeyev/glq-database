@@ -1,0 +1,15 @@
+{% extends "lenses/base.html" %}
+{% load static %}
+
+{% block title %}Gravitationally Lensed Quasar Database{% endblock %}
+
+{% block content %}
+<p>
+<table>
+<tr>
+<img src= "{% static 'lenses/caustic.jpg' %}"  width="633" height="405" align="right">
+Welcome to Main Page of Graviattinally lensed Quasars (GLQ) Database.
+This database is based on <a href="https://www.cfa.harvard.edu/castles/"> CASTLES Survey </a> and <a href="http://www-utap.phys.s.u-tokyo.ac.jp/~sdss/sqls/index.html">SQLS</a> gravitationally lensed quasar catalogs and include some recently discovered GLQ. The database contains astrometric and photometric information about confirmed gravitationally lensed quasars only. It no contains static variability lensing objects, such as galaxy-galaxy lenses and weak lensing objects.
+<table>
+</p>
+{% endblock %}
