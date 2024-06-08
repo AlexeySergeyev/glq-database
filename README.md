@@ -1,5 +1,8 @@
 # Welcome to the main page of the Gravitationally Lensed Quasars (GLQ) Database
 
+Gravitationally lensed quasars occur when the light from a distant quasar is bent and magnified by the gravitational field of an intervening massive object, such as a galaxy or galaxy cluster. This effect creates multiple, distorted images of the quasar, often forming a ring-like or arc structure around the lensing object. This phenomenon not only helps astronomers study the properties of quasars themselves but also provides a valuable tool for probing the distribution of dark matter and measuring the expansion rate of the universe, as it allows for the observation of galaxies and matter that are otherwise too faint or distant to detect.
+
+![Caustic](lenses/static/lenses/caustic.jpg)
 This database draws upon the <a href="https://www.cfa.harvard.edu/castles/"> CASTLES Survey </a> and the <a href="http://www-utap.phys.s.u-tokyo.ac.jp/~sdss/sqls/index.html">SQLS</a> gravitationally lensed quasar catalogs and includes some recently discovered GLQs. It features astrometric and photometric information exclusively about confirmed gravitationally lensed quasars. Note that it does not include static variability lensing objects, such as galaxy-galaxy lenses or weak lensing objects.
 
 ## Project Structure
